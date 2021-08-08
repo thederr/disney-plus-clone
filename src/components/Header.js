@@ -54,19 +54,19 @@ const Logo = styled.img`
 const NavMenu = styled.div`
    display: flex;
    flex: 1;
-   margin-left 20px;
-   align-items:center;
+   margin-left: 20px;
+   align-items: center;
    a{
        display:flex;
        align-items: center;
        padding: 0 12px;
-       cursor-pointer;
+       cursor: pointer;
        img {
             height: 20px;
        }
 
        span {
-            font-sizel 13px;
+            font-size: 13px;
             letter-spacing: 1.42px;
             position: relative;
             &:after{
@@ -96,5 +96,5 @@ const UserImg = styled.img`
    width: 48px;
    height: 48px;
    border-radius: 50%;
-   cursor-pointer;
+   cursor: pointer;
 `
