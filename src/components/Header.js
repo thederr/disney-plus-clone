@@ -3,26 +3,57 @@
 //display:flex;
 import React from 'react';
 import styled from 'styled-components';
+import { useDispatch } from 'react-redux';
+import { useSelector } from 'react-redux';
+import { useHistory } from 'react-router';
+import {
+    selectUserName,
+    selectUserPhoto,
+    setUserLoginDetails,
+} from '../features/user/userSlice';
 import { auth, provider } from '../firebase';
 
 
 function Header(props) {
+     const dispatch = useDispatch();
+     const history = useHistory();
+     const userName= useSelector(selectUserName);
+     const userPhoto = useSelector(selectUserPhoto);
+
+
     const handleAuth = () =>{
         auth
         .signInWithPopup(provider)
         .then((result)=>{
-            console.log(result)
+            setUser(result.user);
         })
         .catch((error)=>{
             alert(error.message);
         });
     };
 
+    const setUser = (user)=>{
+        dispatch(
+            setUserLoginDetails({
+                name:user.displayName,
+                email:user.email,
+                photo:user.photoURL,
+            })
+            )
+     };
+
+
     return (
         <Nav>
             <Logo>
                 <img src="/images/logo.svg" alt="disney logo"/>
             </Logo>
+            {
+                !userName ? (
+                <Login onClick={handleAuth}>Login</Login>
+                ):(
+                        <>
+
             <NavMenu>
                 <a href='/home'>
                     <img src="/images/home-icon.svg" alt="HOME"/>
@@ -48,12 +79,13 @@ function Header(props) {
                     <img src="/images/series-icon.svg" alt="SERIES"/>
                     <span>SERIES</span>
                 </a>
-            </NavMenu>
-            <Login onClick={handleAuth}>Login</Login>        </Nav>
-    
+                            </NavMenu>
+                            <UserImg src={userPhoto} alt="User"/>
+            </>    
+      )}
+      </Nav>
     );
-};
-
+  };
 const Nav = styled.nav`
 position:fixed;
 top:0;
@@ -166,5 +198,8 @@ transition: all 0.2s east 0s;
     color:#000;
     border-color:transparent
 }
+`
+const UserImg = styled.img`
+height:100%;
 `
 export default Header
