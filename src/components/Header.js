@@ -1,6 +1,7 @@
 //vertical center : align-item:center;
 //space-between
 //display:flex;
+import { useEffect } from 'react';
 import React from 'react';
 import styled from 'styled-components';
 import { useDispatch } from 'react-redux';
@@ -9,27 +10,49 @@ import { useHistory } from 'react-router';
 import {
     selectUserName,
     selectUserPhoto,
+    setSignOutState,
     setUserLoginDetails,
 } from '../features/user/userSlice';
 import { auth, provider } from '../firebase';
-
 
 function Header(props) {
      const dispatch = useDispatch();
      const history = useHistory();
      const userName= useSelector(selectUserName);
-     const userPhoto = useSelector(selectUserPhoto);
-
-
-    const handleAuth = () =>{
-        auth
-        .signInWithPopup(provider)
-        .then((result)=>{
-            setUser(result.user);
-        })
-        .catch((error)=>{
-            alert(error.message);
+    const userPhoto = useSelector(selectUserPhoto);
+    
+    useEffect(() => {
+        auth.onAuthStateChanged(async (user) => {
+            if (user) {
+                setUser(user);
+                history.push("/home");
+            }
         });
+    }, [userName]);
+    //function only runs when userName is updated
+    //if the user is logged in and you refresh the page
+    //if brings you to the home page
+
+
+    const handleAuth = () => {
+        if (!userName) {
+            auth
+                .signInWithPopup(provider)
+                .then((result) => {
+                    setUser(result.user);
+                })
+                .catch((error) => {
+                    alert(error.message);
+                });
+        } else if (userName) {
+            auth.
+                signOut()
+                .then(()=>{
+                    dispatch(setSignOutState());
+                    history.push("/");
+                })
+                .catch((error) => alert(error.message));
+        };
     };
 
     const setUser = (user)=>{
@@ -39,7 +62,7 @@ function Header(props) {
                 email:user.email,
                 photo:user.photoURL,
             })
-            )
+        )
      };
 
 
@@ -80,7 +103,12 @@ function Header(props) {
                     <span>SERIES</span>
                 </a>
                             </NavMenu>
-                            <UserImg src={userPhoto} alt="User"/>
+                            <SignOut>
+                                <UserImg src={userPhoto} alt="User" />
+                                <DropDown>
+                                    <span onClick={handleAuth}>Sign Out</span>
+                                </DropDown>
+                            </SignOut>
             </>    
       )}
       </Nav>
@@ -201,5 +229,47 @@ transition: all 0.2s east 0s;
 `
 const UserImg = styled.img`
 height:100%;
+
 `
+
+const DropDown = styled.div`
+position:absolute;
+top:48px;
+right:0px;
+background:rgb(19,19,19);
+border: 1px solid rgba(151,151,151,0.34);
+border-radius:4px;
+box-shadow:rgb( 0 0 0 /50%) 0px 0px 18px 0px;
+letter-spacing:1.5px;
+padding:10px;
+font-size:14px;
+opacity:0;
+`
+const SignOut = styled.div`
+position:relative;
+height:48px;
+display:flex;
+cursor:pointer;
+align-items:center;
+justify-content:center;
+
+${UserImg} {
+    border-radius:50%;
+    width:100%;
+    height:100%;
+};
+    &:hover {
+        ${DropDown} {
+            opacity:1;
+            transition-duration:1s;
+
+    };   
+};
+
+
+`
+//__________________________________________________
+// attempting to get user photo reduced to 50% border radius
+// 2:11:17 
+//__________________________________________________
 export default Header
