@@ -1,11 +1,23 @@
-//verticall center : align-item:center;
+//vertical center : align-item:center;
 //space-between
 //display:flex;
+import React from 'react';
 import styled from 'styled-components';
+import { auth, provider } from '../firebase';
 
-import React from 'react'
 
 function Header(props) {
+    const handleAuth = () =>{
+        auth
+        .signInWithPopup(provider)
+        .then((result)=>{
+            console.log(result)
+        })
+        .catch((error)=>{
+            alert(error.message);
+        });
+    };
+
     return (
         <Nav>
             <Logo>
@@ -37,10 +49,10 @@ function Header(props) {
                     <span>SERIES</span>
                 </a>
             </NavMenu>
-            <Login>Login</Login>
-        </Nav>
-    )
-}
+            <Login onClick={handleAuth}>Login</Login>        </Nav>
+    
+    );
+};
 
 const Nav = styled.nav`
 position:fixed;
@@ -58,15 +70,22 @@ letter-spacing:16px;
 z-index:3;
 `
 const Logo= styled.a`
+//----------------------------------------- 
+//  Disney Logo Not Showing up correctly on smaller screens
+//  Disney Logo goes away and not the home + search links
+//  
+//-----------------------------------------
 padding:0;
 width:80px;
 margin-top:4px;
 max-height:70px;
 font-size:0;
 display:inline-block;
+
     img{
         display:block;
         width:100%;
+
     }
 
 `
@@ -145,8 +164,7 @@ transition: all 0.2s east 0s;
 &:hover {
     background-color:#f9f9f9;
     color:#000;
-    border-color:transparent;
+    border-color:transparent
 }
-
 `
 export default Header
