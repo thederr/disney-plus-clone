@@ -3,11 +3,21 @@ import styled from 'styled-components';
 const Viewers = (props) => {
     return (
         <Container>
-            <div>1</div>
-            <div>2</div>
-            <div>3</div>
-            <div>4</div>
-            <div>5</div>
+            <Wrap>
+                <img src="/images/viewers-disney.png" alt=""/>
+            </Wrap>
+            <Wrap>
+                <img src="/images/viewers-pixar.png" alt="" />
+            </Wrap>
+            <Wrap>
+                <img src="/images/viewers-marvel.png" alt="" />
+            </Wrap>
+            <Wrap>
+                <img src="/images/viewers-starwars.png" alt="" />
+            </Wrap>
+            <Wrap>
+                <img src="/images/viewers-national.png" alt="" />
+            </Wrap>
 
         </Container>
     )
@@ -15,7 +25,7 @@ const Viewers = (props) => {
 
 const Container = styled.div`
     margin-top:30px;
-    padding:30 px 0 px 26px;
+    padding:30px 0px 26px;
     display:grid;
     grid-gap:25px;
     gap:25px;
@@ -25,6 +35,26 @@ const Container = styled.div`
         grid-template-columns: repeat(1, minmax(0,1fr));
 
     }
+`
+const Wrap = styled.div`
+padding-top:56.25%;
+border-radius:10px;
+box-shadow: rgb(0 0 0 /69%) 0px 26px 30px -10px,
+    rgb( 0 0 0 / 73%) 0px 16px 10px -10px;
+cursor: pointer;
+overflow:hidden;
+position: relative;
+transition:all 250ms cubic-bezier(0.445, 0.05, 0.55, 0.95) 0s;
+border:3px solid rgb(249, 249, 249, 0.1);
+
+img {
+    inset:0px;
+    display:block;
+    height:100%;
+    object-fit:cover;
+    opacity:1;
+    position:absolute;
+}
 
 `
 export default Viewers
