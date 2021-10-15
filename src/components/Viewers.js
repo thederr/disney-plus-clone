@@ -30,10 +30,9 @@ const Viewers = (props) => {
             <Wrap>
                 <img src="/images/viewers-national.png" alt="" />
                 <video autoPlay={true} loop={true} playsInline={true}>
-                    <source src="/videos/1564676296-national-geographic.mp" type="video/mp4"/>
+                    <source src="/videos/1564676296-national-geographic.mp4" type="video/mp4"/>
                 </video>
             </Wrap>
-
         </Container>
     )
 };
@@ -79,11 +78,12 @@ const Wrap = styled.div`
     opacity: 0;
     z-index: 0;
 }
-&:hover {
-box-shadow: rgb(0 0 0 / 80%) 0px 40px 58px -16px,
-    rgb(0 0 0 / 73%) 0px 30px 22px -10px;
-transform: scale(1.05);
-border-color:rgba(249, 249, 249, 0.1);
+    &:hover {
+    box-shadow: rgb(0 0 0 / 80%) 0px 40px 58px -16px,
+        rgb(0 0 0 / 73%) 0px 30px 22px -10px;
+    transform: scale(1.05);
+    border-color:rgba(249, 249, 249, 0.1);
+
     video {
         opacity:1;
     }
