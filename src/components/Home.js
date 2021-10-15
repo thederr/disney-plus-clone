@@ -2,14 +2,15 @@ import styled from "styled-components"
 import React from 'react'
 import ImgSlider from "./ImgSlider";
 import Viewers from "./Viewers";
-import Reccomends from "./Reccomends";
+import Reccomend from "./Reccomend";
+
 
 const Home = (props) => {
     return (
         <Container>
         <ImgSlider />
         <Viewers />
-        <Reccomends/>
+        <Reccomend />
         </Container>
     );
 };
