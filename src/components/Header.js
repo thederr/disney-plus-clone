@@ -130,11 +130,7 @@ letter-spacing:16px;
 z-index:3;
 `
 const Logo= styled.a`
-//----------------------------------------- 
-//  Disney Logo Not Showing up correctly on smaller screens
-//  Disney Logo goes away and not the home + search links
-//  
-//-----------------------------------------
+
 padding:0;
 width:80px;
 margin-top:4px;
@@ -209,12 +205,12 @@ a   {
 }
 
 // @media (max-width: 768px) {
-//     display:none;
+//     display:none;---------------- Uncomment this out before building project
 // }
 `
 const Login=styled.a`
 background-color:rgba(0,0,0,0.6);
-padding 8px 16px;
+padding: 8px 16px;
 text-transform:uppercase;
 letter-spacing:1.5px;
 border: 1px solid #f9f9f9;
@@ -268,8 +264,5 @@ ${UserImg} {
 
 
 `
-//__________________________________________________
-// attempting to get user photo reduced to 50% border radius
-// 2:11:17 
-//__________________________________________________
+
 export default Header

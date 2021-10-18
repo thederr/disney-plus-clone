@@ -96,4 +96,4 @@ const Wrap = styled.div`
     }
 }
 `
-export default ImgSlider;
+export default ImgSlider

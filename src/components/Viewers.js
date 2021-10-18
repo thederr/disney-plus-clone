@@ -1,3 +1,4 @@
+import React from 'react'
 import styled from 'styled-components';
 
 const Viewers = (props) => {
@@ -75,7 +76,8 @@ const Wrap = styled.div`
     height: 100%;
     position: absolute;
     top: 0px;
-    opacity: 0;
+    opacity: 1;
+    //-----------------------change to 0 after debugging
     z-index: 0;
 }
     &:hover {

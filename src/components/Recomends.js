@@ -3,7 +3,7 @@ import styled from 'styled-components';
 import { Link } from "react-router-dom";
 
 
-const Reccomend = (props) => {
+const Recommends = (props) => {
     return (
         <Container>
             <h3>Reccomended for you</h3>
@@ -80,4 +80,4 @@ img {
 `;
 
 
-export default Reccomend
+export default Recommends

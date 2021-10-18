@@ -37,7 +37,7 @@ justify-content: center;
 align-items: center;
 flex-direction: column;
 padding: 80px 40px;
-height 100%;
+height: 100%;
 `;
 const BgImage = styled.div`
 background-image: url("/images/login-background.jpg");
@@ -57,14 +57,6 @@ max-width: 650px;
 width:100%;
 display:flex;
 flex-direction: column;
-
-
-// margin-bottom: 2px;
-// max-width:650px;
-// flex-wrap: wrap;
-// transition-timing-funciton: ease-out;
-// transition-opasity:0.2s;
-// width:100%;
 
 `;
 const CTALogoOne= styled.img`
@@ -111,4 +103,4 @@ width:100%;
 vertical-align:bottom;
 `;
 
-export default Login;
+export default Login
