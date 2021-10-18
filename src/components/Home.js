@@ -23,8 +23,8 @@ const Home = (props) => {
     console.log("hello");
     db.collection("movies").onSnapshot((snapshot) => {
       snapshot.docs.map((doc) => {
-        console.log('i made it here')
-        console.log(recommends)
+        // console.log('i made it here')
+        // console.log(recommends)
         switch (doc.data().type) {
           case "recommend":
             recommends = [...recommends, { id: doc.id, ...doc.data() }];
