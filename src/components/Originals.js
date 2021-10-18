@@ -1,39 +1,29 @@
 import React from 'react'
 import styled from 'styled-components';
 import { Link } from "react-router-dom";
-
+import { useSelector } from 'react-redux';
+import { selectOriginal } from '../features/movie/movieSlice';
 
 const Originals = (props) => {
+    const movies = useSelector(selectOriginal);
     return (
         <Container>
             <h3>Originals</h3>
             <Content>
-                <Wrap>
-                    <Link id="/">
-                        <img src='https://th.bing.com/th/id/R.b9726e2cb1a648c776ab46f688ebe718?rik=c792sdLA7mjJIA&pid=ImgRaw&r=0' alt='' />
-                    </Link>
-                </Wrap>
-                <Wrap>
-                    <Link id="/">
-                        <img src='https://th.bing.com/th/id/R.b9726e2cb1a648c776ab46f688ebe718?rik=c792sdLA7mjJIA&pid=ImgRaw&r=0' alt='' />
-                    </Link>
-                </Wrap>
-                <Wrap>
-                    <Link id="/">
-                        <img src='https://th.bing.com/th/id/R.b9726e2cb1a648c776ab46f688ebe718?rik=c792sdLA7mjJIA&pid=ImgRaw&r=0' alt='' />
-                    </Link>
-                </Wrap>
-                <Wrap>
-                    <Link id="/">
-                        <img src='https://th.bing.com/th/id/R.b9726e2cb1a648c776ab46f688ebe718?rik=c792sdLA7mjJIA&pid=ImgRaw&r=0' alt='' />
-                    </Link>
-                </Wrap>
+                {movies &&
+                    movies.map((movie, key) => (
+                        <Wrap key={key}>
+                            {movie.id}
+                            <Link to={`/detail/` + movie.id}>
+                                <img src={movie.cardImg} alt={movie.title} />
+                            </Link>
+                        </Wrap>
+                    ))}
             </Content>
         </Container>
-     )
+
+    )
 };
-
-
 const Container = styled.div`
     padding: 0 0 26px;
 `

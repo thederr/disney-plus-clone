@@ -1,43 +1,35 @@
 import React from 'react'
 import styled from 'styled-components';
 import { Link } from "react-router-dom";
+import { useSelector } from 'react-redux';
+import { selectNewDisney } from '../features/movie/movieSlice';
 
 
 const NewDisney = (props) => {
+    const movies = useSelector(selectNewDisney);
     return (
         <Container>
-            <h3>New to Disney</h3>
+            <h3>New to Disney+</h3>
             <Content>
-                <Wrap>
-                    <Link id="/">
-                        <img src='https://th.bing.com/th/id/R.b9726e2cb1a648c776ab46f688ebe718?rik=c792sdLA7mjJIA&pid=ImgRaw&r=0' alt='' />
-                    </Link>
-                </Wrap>
-                <Wrap>
-                    <Link id="/">
-                        <img src='https://th.bing.com/th/id/R.b9726e2cb1a648c776ab46f688ebe718?rik=c792sdLA7mjJIA&pid=ImgRaw&r=0' alt='' />
-                    </Link>
-                </Wrap>
-                <Wrap>
-                    <Link id="/">
-                        <img src='https://th.bing.com/th/id/R.b9726e2cb1a648c776ab46f688ebe718?rik=c792sdLA7mjJIA&pid=ImgRaw&r=0' alt='' />
-                    </Link>
-                </Wrap>
-                <Wrap>
-                    <Link id="/">
-                        <img src='https://th.bing.com/th/id/R.b9726e2cb1a648c776ab46f688ebe718?rik=c792sdLA7mjJIA&pid=ImgRaw&r=0' alt='' />
-                    </Link>
-                </Wrap>
+                {movies &&
+                    movies.map((movie, key) => (
+                        <Wrap key={key}>
+                            {movie.id}
+                            <Link to={`/detail/` + movie.id}>
+                                <img src={movie.cardImg} alt={movie.title} />
+                            </Link>
+                        </Wrap>
+                    ))}
             </Content>
         </Container>
+
     )
 };
-
 
 const Container = styled.div`
     padding: 0 0 26px;
 `
-const Content = styled.div`
+    const Content = styled.div`
     display: grid;
     grid-gap: 25px;
     gap: 25px;
@@ -47,7 +39,7 @@ const Content = styled.div`
         grid-template-columns: repeat(2,minmax(0,1fr));
     }
 `
-const Wrap = styled.div`
+    const Wrap = styled.div`
 padding-top:56.25%;
 border-radius:10px;
 box-shadow: rgb(0 0 0 / 69%) 0px 26px 30px -10px,
