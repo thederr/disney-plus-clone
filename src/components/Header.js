@@ -1,6 +1,3 @@
-//vertical center : align-item:center;
-//space-between
-//display:flex;
 import { useEffect } from 'react';
 import React from 'react';
 import styled from 'styled-components';

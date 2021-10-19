@@ -21,7 +21,8 @@ const Trending = (props) => {
                     ))}
             </Content>
         </Container>
-     )
+    )
+    
 };
 
 

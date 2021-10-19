@@ -76,7 +76,8 @@ const Wrap = styled.div`
     height: 100%;
     position: absolute;
     top: 0px;
-    opacity: 1;
+    //-------------------------------
+    opacity: 0;
     //-----------------------change to 0 after debugging
     z-index: 0;
 }
